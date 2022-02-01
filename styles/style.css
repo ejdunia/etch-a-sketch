@@ -1,0 +1,21 @@
+.sketchContainer {
+    display: grid;
+    width: 500px;
+    height: 500px;
+    border: 1px solid #3f3f2b;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.gridDiv {
+    margin: 0;
+    width: 100%;
+    height: 100%x;
+    border: 0.1px dotted #220b0b;
+    background-color: #f0f8ff;
+    border-radius: 4px;
+}
+/* 
+.resetGrid {
+    background-color: #f7f707;
+} */
