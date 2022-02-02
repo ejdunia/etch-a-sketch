@@ -12,10 +12,20 @@
         <header><h1>Etch a Sketch</h1></header>
 
         <div class="controls">
-            <button class="resetGrid">Reset</button>
+            <button class="resetGrid">CLEAR</button>
+            <div class="slideContainer">
+                <input
+                    type="range"
+                    min="2"
+                    max="64"
+                    value="16"
+                    class="slider"
+                    id="myRange"
+                />
+            </div>
+            <div id="gridNumberOutput"></div>
         </div>
 
         <div class="sketchContainer"></div>
-
     </body>
 </html>
