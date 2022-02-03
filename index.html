@@ -9,23 +9,38 @@
         <title>Etch a Sketch</title>
     </head>
     <body>
-        <header><h1>Etch a Sketch</h1></header>
+        <header class="header"><h1>Etch a Sketch</h1></header>
+        <div class="container">
+            <div class="controls">
+                <div class="pickerContainer">
+                    <!-- add a color picker -->
+                    <input
+                        type="color"
+                        id="colorPicker"
+                        name="favcolor"
+                        value="#645a99"
+                    />
+                </div>
+                <button class="chooseColor button">CHOOSE COLOR</button>
+                <button class="eraser button">ERASER</button>
+                <button class="rainbow button">RAINBOW</button>
+                <button class="clear button">CLEAR</button>
 
-        <div class="controls">
-            <button class="resetGrid">CLEAR</button>
-            <div class="slideContainer">
-                <input
-                    type="range"
-                    min="2"
-                    max="64"
-                    value="16"
-                    class="slider"
-                    id="myRange"
-                />
+                <div class="slideContainer">
+                    <input
+                        type="range"
+                        min="2"
+                        max="64"
+                        value="16"
+                        class="slider"
+                        id="myRange"
+                    />
+                </div>
+                <div id="gridNumberOutput"></div>
             </div>
-            <div id="gridNumberOutput"></div>
-        </div>
 
-        <div class="sketchContainer"></div>
+            <div class="sketchContainer"></div>
+        </div>
+        <div class="footer">Copyright &copy ejdunia 2022</div>
     </body>
 </html>
