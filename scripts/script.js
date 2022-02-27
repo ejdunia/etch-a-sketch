@@ -1,10 +1,10 @@
 let gridNum = 16;
 
-const slider = document.getElementById("myRange");
+const slider = document.querySelector(".myRange");
 
-const gridNumberOutput = document.getElementById("gridNumberOutput");
+const gridNumberOutput = document.querySelector(".gridNumberOutput");
 const pickerContainer = document.querySelector(".pickerContainer");
-const colorPicker = document.querySelector("#colorPicker");
+const colorPicker = document.querySelector(".colorPicker");
 
 const sketchContainer = document.querySelector(".sketchContainer");
 
@@ -79,3 +79,4 @@ slider.addEventListener("input", () => {
     gridNum = slider.value;
     makeGrid();
 });
+ 
