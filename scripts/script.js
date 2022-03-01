@@ -9,16 +9,17 @@ const colorPicker = document.querySelector(".colorPicker");
 const sketchContainer = document.querySelector(".sketchContainer");
 
 const gridDiv = document.createElement("div");
-const grids = document.querySelectorAll("gridDiv");
 
 const eraser = document.querySelector(".eraser");
 const rainbow = document.querySelector(".rainbow");
 let colorPick = colorPicker.value;
 const clear = document.querySelector(".clear");
-
+gridNumberOutput.textContent = `${slider.value} X ${slider.value}`;
+let grids;
 const chooseColor = document.querySelector(".chooseColor");
 
-function changeBGColor(e) {
+function changeToRandomBGColor(e) {
+    // makes a random color
     const randomColor = Math.floor(Math.random() * 16777215).toString(16);
     e.target.style.background = `#${randomColor}`;
 }
@@ -40,43 +41,51 @@ function makeGrid() {
     for (let i = 0; i < gridNum ** 2; i++) {
         const gridDiv = document.createElement("div");
         gridDiv.classList.add("gridDiv");
-        gridDiv.addEventListener("mouseover", changeBGColor);
+        gridDiv.addEventListener("mouseover", changeToRandomBGColor);
         sketchContainer.appendChild(gridDiv);
-
-        clear.addEventListener("click", () => {
-            gridDiv.style.background = "#f0f8ff";
-        });
-
-        rainbow.addEventListener("click", () =>
-            gridDiv.addEventListener("mouseover", changeBGColor)
-        );
-
-        eraser.addEventListener("click", () => {
-            gridDiv.removeEventListener("mouseover", changeBGColor);
-            gridDiv.addEventListener("mouseover", defaultColor);
-        });
-        chooseColor.addEventListener("click", () => {
-            gridDiv.removeEventListener("mouseover", changeBGColor);
-            gridDiv.addEventListener("mouseover", pickedColor);
-        });
-        // clear.addEventListener("click", defaultColor);
     }
 }
 
-gridNumberOutput.textContent = `${slider.value} X ${slider.value}`;
+rainbow.addEventListener("click", () =>
+    grids.forEach((grid) => {
+        grid.addEventListener("mouseover", changeToRandomBGColor);
+    })
+);
+
+eraser.addEventListener("click", () => {
+    grids = document.querySelectorAll(".gridDiv");
+    grids.forEach((grid) => {
+        grid.removeEventListener("mouseover", pickedColor);
+        grid.removeEventListener("mouseover", changeToRandomBGColor);
+        grid.addEventListener("mouseover", defaultColor);
+    });
+});
+
+chooseColor.addEventListener("click", () => {
+    grids = document.querySelectorAll(".gridDiv");
+    grids.forEach((grid) => {
+        grid.removeEventListener("mouseover", changeToRandomBGColor);
+        grid.addEventListener("mouseover", pickedColor);
+    });
+});
+
+clear.addEventListener("click", () => {
+    grids = document.querySelectorAll(".gridDiv");
+    grids.forEach((grid) => {
+        grid.style.background = "#f0f8ff";
+    });
+});
 
 colorPicker.addEventListener("input", () => {
     pickerContainer.style.background = colorPicker.value;
     colorPick = colorPicker.value;
 });
 
-pickerContainer.style.background = colorPicker.value;
-
-makeGrid((gridNum = 16));
-
 slider.addEventListener("input", () => {
     gridNumberOutput.textContent = `${slider.value} X ${slider.value}`;
     gridNum = slider.value;
     makeGrid();
 });
- 
+pickerContainer.style.background = colorPicker.value;
+
+makeGrid((gridNum = 16));
